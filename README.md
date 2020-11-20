@@ -7,7 +7,7 @@
 ___
 # McAfee Mvision Cloud
 
-This notebook goes through different samples that demonstrate the use of the Mvision Cloud EDR.
+This notebook goes through different samples that demonstrate the use of the Mvision Cloud.
 
 Currently the following samples are provided:
 
