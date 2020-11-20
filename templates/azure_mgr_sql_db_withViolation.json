@@ -1,0 +1,39 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "resources": [{
+        "name": "configauditserver2/testSmrutee",
+        "apiVersion": "2015-01-01",
+        "type": "Microsoft.Sql/servers/databases",
+        "location": "Central US",
+        "properties": {},
+        "resources": [{
+            "name": "testAudit",
+            "type": "auditingSettings",
+            "apiVersion": "2017-03-01-preview",
+            "dependsOn": [
+                "Microsoft.Sql/servers/configauditserver2/databases/testSmrutee"
+            ],
+            "properties": {
+                "state": "Enabled",
+                "storageEndpoint": "https://auqatestblob.blob.core.windows.net/",
+                "storageAccountAccessKey": "euuYpCDbzx4LtHSvMDPWU0qs9WyB6yl8F+hs/1r6wjZDNYbF3lOt8XVuqFcF7qkJo8xxTKZ9zxTx1Ntgmsy9NQ==",
+                "retentionDays": 1,
+                "auditActionsAndGroups": [
+            "SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP",
+            "FAILED_DATABASE_AUTHENTICATION_GROUP",
+            "BATCH_COMPLETED_GROUP"
+        ]
+            }
+        },
+        {
+            "name": "current",
+            "type": "transparentDataEncryption",
+            "apiVersion": "2014-04-01",
+            "dependsOn": ["Microsoft.Sql/servers/configauditserver2/databases/testSmrutee"],
+            "properties": {"status": "Disabled"}
+        }]
+    }]
+
+}
